@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
 import Players from './Players'
 
@@ -15,6 +15,22 @@ function Winner(){
 class MyGame extends React.Component{
     
     
+    isNumberInGrid(currentBall){
+      console.log("In isNumberGrid ")
+      var returnPos = []
+      for(let i = 0; i<this.state.grid.length; i++){
+        for(let j = 0; j<this.state.grid[i].length; j++){
+          if(currentBall === this.state.grid[i][j]){
+            returnPos[0] = i;
+            returnPos[1] = j;
+            break;
+          }
+            
+        }
+      }
+      console.log(returnPos.length)
+      return returnPos;
+    }
     handleClick(){
       console.log("Handle click")
       
@@ -26,7 +42,7 @@ class MyGame extends React.Component{
       var tempAllBalls = new Set(this.state.allBalls)
       tempAllBalls.add(tempCurrentBall)
       
-      if(this.state.currentBall != -1){
+      if(this.state.currentBall !== -1){
         var tempPrevBalls = []
         for(let i = 0; i<3; i++){
           tempPrevBalls[i+1] = this.state.prevBalls[i];
@@ -35,12 +51,29 @@ class MyGame extends React.Component{
         this.setState({prevBalls:tempPrevBalls})  
       }
        this.setState({currentBall:tempCurrentBall, allBalls:tempAllBalls})
+
+       //Change state of playerProgressGrid if no is in the player grid
+        console.log("Current Ball" + tempCurrentBall)
+       //search in the grid
+       var returnPos = this.isNumberInGrid(tempCurrentBall)
+       if(returnPos.length !== 0){
+        var tempGrid = []
+        for(let i = 0; i<5; i++){
+          tempGrid.push(new Array(this.state.playerProgressGrid[i]))
+        }
+        tempGrid[returnPos[0]][returnPos[1]] = 1;
+        this.setState({playerProgressGrid:tempGrid})
+       } 
+       else{
+         console.log("No not in grid")
+       }
+
       
     }
     
     generateMatrix(){
       var tempMatrix = new Set();
-      while(tempMatrix.size != 25){
+      while(tempMatrix.size !== 25){
         tempMatrix.add(Math.floor((Math.random() * 100) + 1))
       }
       
@@ -60,7 +93,11 @@ class MyGame extends React.Component{
       var prevBalls = [-1,-1,-1,-1]
       var currentBall = -1
       var allBalls = new Set()
-      this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls}
+      var playerProgressGrid = []
+      for(let i = 0; i<5; i++){
+        playerProgressGrid.push(new Array(5).fill(0))
+      }
+      this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid}
       this.handleClick = this.handleClick.bind(this)
     }
     
@@ -68,7 +105,7 @@ class MyGame extends React.Component{
       return (
         <div>
           <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall}/>
-          <Players count={1} grid={this.state.grid}/>
+          <Players count={1} grid={this.state.grid} playerProgressGrid={this.state.playerProgressGrid} />
           <Winner />
         </div>
       )

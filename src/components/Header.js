@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 function HeaderCell(props){
     var style = {
@@ -9,7 +9,7 @@ function HeaderCell(props){
     }
     return (
       <div style = {style}>
-        {props.value==-1?"N/A":props.value}
+        {props.value===-1?"N/A":props.value}
       </div>
     )
   }
