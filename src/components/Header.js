@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.css';
 
 function HeaderCell(props){
     var style = {
@@ -16,7 +17,7 @@ function HeaderCell(props){
   
   function PreviousBalls(props){
     return (
-      <div>
+      <div class="flex-container">
         <HeaderCell value={props.prevBalls[0]}/>
         <HeaderCell value={props.prevBalls[1]}/>
         <HeaderCell value={props.prevBalls[2]}/>
@@ -38,8 +39,11 @@ function HeaderCell(props){
         return (
             <div>
               <button onClick={ () => this.props.handleClick() }>Draw ball!</button>
-              <CurrentBall currentBall={this.props.currentBall}/>
-              <PreviousBalls prevBalls={this.props.prevBalls}/>
+              <div class="flex-container">
+                <CurrentBall currentBall={this.props.currentBall}/>
+                <PreviousBalls prevBalls={this.props.prevBalls}/>
+              </div>
+              
             </div>
           )
       }

@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>               
-        <MyGame />
+        <MyGame NO_OF_PLAYERS = {4}/>
       </div>
     );
   }

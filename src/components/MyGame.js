@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
-import Player from './Player'
+import Player from './Player';
+import '../App.css';
 
 function Winner(){
     return (
@@ -88,6 +89,7 @@ class MyGame extends React.Component{
     
     constructor(props){
       super(props)
+
       var grid = this.generateMatrix()
       var prevBalls = [-1,-1,-1,-1]
       var currentBall = -1
@@ -101,10 +103,18 @@ class MyGame extends React.Component{
     }
     
     render(){
+    
+      var temp = []
+      for(var i = 0; i<this.props.NO_OF_PLAYERS; i++){
+        temp.push(<Player key = {i} grid={this.state.grid} playerProgressGrid={this.state.playerProgressGrid} /> )
+      }
       return (
         <div>
           <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall}/>
-          <Player key={1} grid={this.state.grid} playerProgressGrid={this.state.playerProgressGrid}  />
+          <div class="flex-container">
+            {temp}
+          </div>
+          
           <Winner />
         </div>
       )
