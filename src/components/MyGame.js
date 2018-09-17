@@ -37,7 +37,7 @@ class MyGame extends React.Component{
       //Random generated ball should be unique
       do{
         var tempCurrentBall = Math.floor((Math.random() * 100) + 1);
-      }while(this.state.allBalls.has(tempCurrentBall))
+      }while(this.state.allBalls.has(tempCurrentBall) && this.state.allBalls.size < 100)
       
       var tempAllBalls = new Set(this.state.allBalls)
       tempAllBalls.add(tempCurrentBall)
@@ -59,7 +59,7 @@ class MyGame extends React.Component{
        if(returnPos.length !== 0){
         var tempGrid = []
         for(let i = 0; i<5; i++){
-          tempGrid.push(new Array(this.state.playerProgressGrid[i]))
+          tempGrid.push(this.state.playerProgressGrid[i])
         }
         tempGrid[returnPos[0]][returnPos[1]] = 1;
         this.setState({playerProgressGrid:tempGrid})
@@ -67,7 +67,6 @@ class MyGame extends React.Component{
        else{
          console.log("No not in grid")
        }
-
       
     }
     

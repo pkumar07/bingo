@@ -1,17 +1,8 @@
 import React from 'react';
-import Matrix from './Matrix';
+import Player from './Player';
 
-function Player(props){
-      return (
-        <div>
-          <Matrix grid={props.grid}  playerProgressGrid={props.playerProgressGrid}/>
-        </div>
-      )
-    
-  }
-  
-  
-  class Players extends React.Component{
+class Players extends React.Component{
+   
     render(){
         var temp = [];
         for(var i = 0; i<this.props.count; i++){
@@ -20,10 +11,11 @@ function Player(props){
     return(
       <div>
         {temp}
+        
       </div>
       )
     }
     
-  }
+}
 
   export default Players;
