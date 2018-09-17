@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import Players from './Players'
+import Player from './Player'
 
 function Winner(){
     return (
@@ -104,7 +104,7 @@ class MyGame extends React.Component{
       return (
         <div>
           <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall}/>
-          <Players count={1} grid={this.state.grid} playerProgressGrid={this.state.playerProgressGrid} />
+          <Player key={1} grid={this.state.grid} playerProgressGrid={this.state.playerProgressGrid}  />
           <Winner />
         </div>
       )

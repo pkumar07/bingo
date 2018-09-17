@@ -4,17 +4,27 @@ import Matrix from './Matrix';
 class Player extends React.Component{
     handleClaimBtnClick(){
         console.log("Claim Button clicked")
+        var playerWon = true;
         var displayMessage = ""
-        for(var i = 0;i<this.props.playerProgressGrid.length;i++){
-            for(var j = 0;j<this.props.playerProgressGrid[i];j++){
+        for(var i = 0;i<5;i++){
+            for(var j = 0;j<5;j++){
                 if(this.props.playerProgressGrid[i][j] === 0){
-                    displayMessage = "False claim"
+                    playerWon = false;
                     break;
                 }
                     
             }
         }
-        displayMessage = "Player Won"
+
+        if(playerWon === true ){
+            displayMessage = "Player Won"
+            //TODO: Disable draw Ball button here
+            
+        }
+        else{
+            displayMessage = "Incorrect claim"
+        }
+        
         alert(displayMessage);
   
     }
