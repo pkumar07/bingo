@@ -21,6 +21,9 @@ class Cell extends React.Component{
         }
 
         
+          console.log("PlayerNO" + this.props.playerNo);
+          console.log("row" + this.props.row + " Col" + this.props.col)
+        
         var style = {
             height:30,
             width:30,
