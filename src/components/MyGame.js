@@ -3,15 +3,13 @@ import Header from './Header';
 import Player from './Player';
 import '../App.css';
 
-function Winner(){
+function Winner(props){
     return (
       <div>
-        <h3>Player is the winner</h3>
+        <h3>Player {props.winnerPlayerNo} is the winner</h3>
       </div>
     )
-  }
-  
-  
+  }  
   
 class MyGame extends React.Component{
 
@@ -93,6 +91,33 @@ class MyGame extends React.Component{
        return tempCurrentBall;
     }
 
+    handleClaimBtnClick(id){
+      console.log("Claim Button clicked")
+      console.log("The button id is" + id)
+      var playerWon = true;
+      var grid = this.state.playerProgressGrid[id]
+      for(var i = 0;i<5;i++){
+          for(var j = 0;j<5;j++){
+              if(grid[i][j] === 0){
+                  playerWon = false;
+                  break;
+              }  
+          }
+      }
+
+      if(playerWon === true ){
+          //displayMessage = "Player Won"
+          //TODO: Disable draw Ball button here
+          this.setState({winnerPlayerNo:id})
+           
+      }
+      else{
+          alert("Incorrect claim")
+      }
+
+  }
+
+
     handleClick(){
        //console.log("Handle click")
        var tempCurrentBall = this.generateNewBall()
@@ -116,24 +141,24 @@ class MyGame extends React.Component{
       var prevBalls = [-1,-1,-1,-1]
       var currentBall = -1
       var allBalls = new Set()
+      var winnerPlayerNo = -1
 
       var playerProgressGrid = []
       for(let i = 0; i<this.props.NO_OF_PLAYERS; i++){
         playerProgressGrid[i] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
       }
 
-     // console.log("Initial playerProgressGridCheck");
-      //console.log(playerProgressGrid[0])
       
-      this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid}
+      this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid, winnerPlayerNo:winnerPlayerNo}
       this.handleClick = this.handleClick.bind(this)
+      this.handleClaimBtnClick = this.handleClaimBtnClick.bind(this)
     }
     
     render(){
     
       var temp = []
       for(var i = 0; i<this.props.NO_OF_PLAYERS; i++){
-        temp.push(<Player key = {i} playerNo = {i} grid={this.state.grid[i]} playerProgressGrid={this.state.playerProgressGrid[i]} /> )
+        temp.push(<Player key = {i} playerNo = {i} grid={this.state.grid[i]} playerProgressGrid={this.state.playerProgressGrid[i]} winnerPlayerNo={this.state.winnerPlayerNo} handleClaimBtnClick={this.handleClaimBtnClick} /> )
       }
       return (
         <div>
@@ -142,7 +167,7 @@ class MyGame extends React.Component{
             {temp}
           </div>
           
-          <Winner />
+          <Winner winnerPlayerNo={this.state.winnerPlayerNo} />
         </div>
       )
     }
