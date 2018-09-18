@@ -8,7 +8,7 @@ class Row extends React.Component{
           }
           var cells = []
           for(let i = 0; i<5; i++){
-            cells.push(<Cell key = {i} row={this.props.row} col={i} grid={this.props.grid[i]} playerProgressGrid={this.props.playerProgressGrid}/>)
+            cells.push(<Cell key = {i} playerNo= {this.props.playerNo} row={this.props.row} col={i} grid={this.props.grid[i]} playerProgressGrid={this.props.playerProgressGrid}/>)
           }
           
           return(

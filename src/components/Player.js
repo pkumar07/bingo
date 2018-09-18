@@ -31,8 +31,8 @@ class Player extends React.Component{
     render(){
         return (
             <div>
-              <Matrix grid={this.props.grid}  playerProgressGrid={this.props.playerProgressGrid}/>
-              <button onClick={() => this.handleClaimBtnClick()}>Claim Bingo!</button>
+              <Matrix playerNo={this.props.playerNo} grid={this.props.grid} playerProgressGrid={this.props.playerProgressGrid}/>
+              <button id={this.props.playerNo} onClick={() => this.handleClaimBtnClick()}>Claim Bingo!</button>
             </div>
         )
     }

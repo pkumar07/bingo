@@ -17,7 +17,7 @@ function HeaderCell(props){
   
   function PreviousBalls(props){
     return (
-      <div class="flex-container">
+      <div className="flex-container">
         <HeaderCell value={props.prevBalls[0]}/>
         <HeaderCell value={props.prevBalls[1]}/>
         <HeaderCell value={props.prevBalls[2]}/>
@@ -39,7 +39,7 @@ function HeaderCell(props){
         return (
             <div>
               <button onClick={ () => this.props.handleClick() }>Draw ball!</button>
-              <div class="flex-container">
+              <div className="flex-container">
                 <CurrentBall currentBall={this.props.currentBall}/>
                 <PreviousBalls prevBalls={this.props.prevBalls}/>
               </div>
