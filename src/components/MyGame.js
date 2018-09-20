@@ -6,7 +6,7 @@ import '../App.css';
 function Winner(props){
     return (
       <div>
-        <h3>Player {props.winnerPlayerNo} is the winner</h3>
+        <h3>Player {props.winnerPlayerNo + 1} is the winner</h3>
       </div>
     )
   }  
@@ -91,6 +91,7 @@ class MyGame extends React.Component{
        return tempCurrentBall;
     }
 
+
     handleClaimBtnClick(id){
       console.log("Claim Button clicked")
       console.log("The button id is" + id)
@@ -116,7 +117,6 @@ class MyGame extends React.Component{
       }
 
   }
-
 
     handleClick(){
        //console.log("Handle click")
@@ -147,7 +147,6 @@ class MyGame extends React.Component{
       for(let i = 0; i<this.props.NO_OF_PLAYERS; i++){
         playerProgressGrid[i] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
       }
-
       
       this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid, winnerPlayerNo:winnerPlayerNo}
       this.handleClick = this.handleClick.bind(this)
@@ -166,7 +165,6 @@ class MyGame extends React.Component{
           <div className="flex-container">
             {temp}
           </div>
-          
           <Winner winnerPlayerNo={this.state.winnerPlayerNo} />
         </div>
       )

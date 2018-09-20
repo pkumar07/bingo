@@ -8,6 +8,7 @@ class Player extends React.Component{
               <Matrix playerNo={this.props.playerNo} grid={this.props.grid} playerProgressGrid={this.props.playerProgressGrid}/>
               {console.log("PlayerNO in Player" + this.props.playerNo)}
               <button id={this.props.playerNo} onClick={() => this.props.handleClaimBtnClick(this.props.playerNo)}>Claim Bingo!</button>
+              <p>Player {this.props.playerNo + 1}</p>
             </div>
         )
     }

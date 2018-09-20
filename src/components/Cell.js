@@ -1,4 +1,5 @@
 import React from 'react';
+import '../App.css';
 
 class Cell extends React.Component{
     render(){
@@ -11,7 +12,7 @@ class Cell extends React.Component{
           playerColor = "blue"
 
         if(this.props.playerNo === 2)
-          playerColor = "green"
+          playerColor = "green" 
 
         if(this.props.playerNo === 3)
           playerColor = "yellow"
@@ -31,7 +32,7 @@ class Cell extends React.Component{
             backgroundColor:playerColor
           }
           return (
-            <div style = {style}>
+            <div style = {style} class="box">
               {this.props.grid}
             </div>
           )
