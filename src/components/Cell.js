@@ -3,7 +3,7 @@ import '../App.css';
 
 class Cell extends React.Component{
     render(){
-        var playerColor = "cyan"
+        var playerColor = "white"
 
         if(this.props.playerNo === 0)
           playerColor = "red"
@@ -15,20 +15,17 @@ class Cell extends React.Component{
           playerColor = "green" 
 
         if(this.props.playerNo === 3)
-          playerColor = "yellow"
+          playerColor = "purple"
 
         if(this.props.playerProgressGrid[this.props.row][this.props.col] === 1){
-          playerColor = "cyan"
+          playerColor = "#caccce"
         }
 
         
-          console.log("PlayerNO" + this.props.playerNo);
-          console.log("row" + this.props.row + " Col" + this.props.col)
+         // console.log("PlayerNO" + this.props.playerNo);
+         // console.log("row" + this.props.row + " Col" + this.props.col)
         
         var style = {
-            height:30,
-            width:30,
-            border:"1px solid black",
             backgroundColor:playerColor
           }
           return (
