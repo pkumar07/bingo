@@ -1,23 +1,31 @@
 import React from 'react';
 import '../App.css';
 
+
+var style = {
+             backgroundColor:"white",
+            }
+
 function HeaderCell(props){
     var style = {
-      height:40,
-      width:40,
+      height:20,
+      width:20,
       border:"1px solid black",
-      backgroundColor:"yellow"
+      backgroundColor:"yellow",
+      borderRadius:"100px",
+      fontSize: "15px"
     }
     return (
-      <div style = {style}>
+      <div className="cell" style = {style}>
         {props.value===-1?"N/A":props.value}
       </div>
     )
   }
   
   function PreviousBalls(props){
+    
     return (
-      <div className="flex-container">
+      <div style={style} className="flex-container">
         <HeaderCell value={props.prevBalls[0]}/>
         <HeaderCell value={props.prevBalls[1]}/>
         <HeaderCell value={props.prevBalls[2]}/>
@@ -28,7 +36,7 @@ function HeaderCell(props){
   
   function CurrentBall(props){
     return (
-      <div>
+      <div style={style} className="flex-container">
         <HeaderCell value={props.currentBall} />
       </div>
     )
@@ -37,11 +45,12 @@ function HeaderCell(props){
   class Header extends React.Component{
       render(){
         return (
-            <div>
-              <button onClick={ () => this.props.handleClick() }>Draw ball!</button>
-              <div className="flex-container">
-                <CurrentBall currentBall={this.props.currentBall}/>
-                <PreviousBalls prevBalls={this.props.prevBalls}/>
+            <div >
+              <div className="flex-container" ><button onClick={ () => this.props.handleClick() }>Draw ball!</button></div>
+              <div className="header flex-container">
+                <div>Last Ball: <CurrentBall currentBall={this.props.currentBall}/></div>
+                <div>Previous Balls: <PreviousBalls prevBalls={this.props.prevBalls}/></div>
+                
               </div>
               
             </div>

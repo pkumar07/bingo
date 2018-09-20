@@ -32,7 +32,7 @@ class Cell extends React.Component{
             backgroundColor:playerColor
           }
           return (
-            <div style = {style} class="box">
+            <div style = {style} className="cell">
               {this.props.grid}
             </div>
           )
