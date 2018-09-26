@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Player from './Player';
 import '../App.css';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 function Winner(props){
     return (
@@ -13,10 +14,10 @@ function Winner(props){
   
 class MyGame extends React.Component{
 
-    displayMatrix(grid, playerNo){
-      console.log("Player " + playerNo)
-      console.log(grid)
-    }
+    //displayMatrix(grid, playerNo){
+      //console.log("Player " + playerNo)
+      //console.log(grid)
+   // }
     
     generateMatrix(){
       var tempMatrix = new Set();
@@ -65,7 +66,7 @@ class MyGame extends React.Component{
        else{
          console.log("No not in grid")
        }
-       this.displayMatrix(tempGrid, playerNo);
+       //this.displayMatrix(tempGrid, playerNo);
        
        return tempGrid; //This is the modified playerProgressGrid for a player
     }
@@ -93,8 +94,8 @@ class MyGame extends React.Component{
 
 
     handleClaimBtnClick(id){
-      console.log("Claim Button clicked")
-      console.log("The button id is" + id)
+     // console.log("Claim Button clicked")
+    //  console.log("The button id is" + id)
       var playerWon = true;
       var grid = this.state.playerProgressGrid[id]
       for(var i = 0;i<5;i++){
@@ -161,10 +162,16 @@ class MyGame extends React.Component{
       }
       return (
         <div>
+          
           <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall}/>
-          <div className="flex-container">
-            {temp}
-          </div>
+          <Grid>
+            <Row className="show-grid">
+              <Col xs={12} md={6} lg={3}>{temp[0]}</Col>
+              <Col xs={12} md={6} lg={3}>{temp[1]}</Col>
+              <Col xs={12} md={6} lg={3}>{temp[2]}</Col>
+              <Col xs={12} md={6} lg={3}>{temp[3]}</Col>
+            </Row>
+          </Grid>
           <Winner winnerPlayerNo={this.state.winnerPlayerNo} />
         </div>
       )

@@ -1,33 +1,4 @@
-
-  .header.flex-container{
-    background-color: red;
-    font-size: 100px;
-    justify-content: space-between; 
-   }
-
-   .header.flex-container>div{
-    background-color: transparent;
-    font-size: 20px;
     
-   }
-
-   .flex-container {
-      display: flex;
-      background-color:transparent;
-      justify-content: space-between;
-    }
-    
-
-     
-  .flex-container > div {
-      background-color: #f1f1f1;
-      margin: 5px;
-      padding: 10px;
-      font-size: 30px;
-     
-     
-    }
-     
     .header.cell{
       height:20px;
       width:20px;
@@ -37,8 +8,8 @@
     }
 
     .cell{
-      height:30px;
-      width:30px;
+      height:40px;
+      width:40px;
       border:1px solid black;
       border-radius: 5px;
       margin: 0.5px;
@@ -46,36 +17,9 @@
       font-size: 22px;
     } 
 
-    .header.btn{
-      height:80%;
-      width:100%;
-      
-    }
-    .btn{
-      border-radius:10px;
-      margin:2px;
-      height:10%;
-      width:50%;
-      font-size: 15x;
-      font-weight: bold;
-      transition-duration: 0.4s;
-      
-    }
-
-    .btn:hover{
-      color: white;
-      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    }
-
-    
-
-    .title{
-      margin: 2px;
-      background: transparent;
-    }
 
     body {
-      width:100%;
+      width:80%;
       background-color: black;
       text-align: center;
     }

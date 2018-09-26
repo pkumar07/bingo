@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-
+import {Grid, Row, Col,Button, PageHeader} from 'react-bootstrap';
 
 function HeaderCell(props){
     return (
@@ -13,11 +13,15 @@ function HeaderCell(props){
   function PreviousBalls(props){
     
     return (
-      <div className="flex-container">
-        <HeaderCell value={props.prevBalls[0]}/>
-        <HeaderCell value={props.prevBalls[1]}/>
-        <HeaderCell value={props.prevBalls[2]}/>
-        <HeaderCell value={props.prevBalls[3]}/>
+      <div>
+        <Grid>
+          <Row className="show-grid">
+            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[0]}/></Col>
+            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[1]}/></Col>
+            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[2]}/></Col>
+            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[3]}/></Col>
+          </Row>
+        </Grid>
       </div>
     )
   }
@@ -33,14 +37,16 @@ function HeaderCell(props){
   class Header extends React.Component{
       render(){
         return (
-            <div className="header flex-container">
-              <div className="header flex-container"><button className="header btn" onClick={ () => this.props.handleClick() }>Draw ball!</button></div>
-              <div className="header flex-container">
-                <div>Last Ball: <CurrentBall currentBall={this.props.currentBall}/></div>
-                <div>Previous Balls: <PreviousBalls prevBalls={this.props.prevBalls}/></div>
-                
-              </div>
-              
+            <div>
+              <PageHeader>BINGO</PageHeader>
+              <Button onClick={ () => this.props.handleClick() }>Draw ball!</Button>
+              <Grid>
+                <Row className="show-grid">
+                  <Col xs={12} md={4}> Last Ball: <CurrentBall currentBall={this.props.currentBall}/></Col>
+                  <Col xs={12} md={2}></Col>
+                  <Col xs={12} md={6}>Previous Balls: <PreviousBalls prevBalls={this.props.prevBalls}/></Col>
+                </Row>
+              </Grid>   
             </div>
           )
       }
