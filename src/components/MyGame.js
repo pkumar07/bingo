@@ -35,7 +35,7 @@ class MyGame extends React.Component{
     }
 
     isNumberInGrid(currentBall, playerNo){
-      console.log("In isNumberGrid ")
+      //console.log("In isNumberGrid ")
       var grid = this.state.grid[playerNo]
       var returnPos = []
       for(let i = 0; i<grid.length; i++){
@@ -60,7 +60,6 @@ class MyGame extends React.Component{
           tempGrid.push(ppgrid[i])
       }
       if(returnPos.length !== 0){
-        //No in grid
         tempGrid[returnPos[0]][returnPos[1]] = 1;
        } 
        else{
@@ -166,9 +165,7 @@ class MyGame extends React.Component{
       return (
         <div>
           <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall} winnerPlayerNo={this.state.winnerPlayerNo}/>
-          <Grid>
-            <Row className="show-grid">{temp} </Row>
-          </Grid>
+          <Grid><Row className="show-grid">{temp} </Row></Grid>
           <Winner winnerPlayerNo={this.state.winnerPlayerNo} />
         </div>
       )

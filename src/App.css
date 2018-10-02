@@ -1,10 +1,14 @@
-    
+    .container {
+      border:1px solid black;
+    }
     .header.cell{
-      height:20px;
-      width:20px;
+      height:45px;
+      width:45px;
       border-radius: 100px;
       font-size: 15px;
-      background-color: yellow
+      font-weight: 600;
+      background-color: indianred
+
     }
 
     .cell{

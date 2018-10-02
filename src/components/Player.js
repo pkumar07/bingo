@@ -1,6 +1,6 @@
 import React from 'react';
 import Matrix from './Matrix';
-import {PageHeader} from 'react-bootstrap';
+import {PageHeader, Button} from 'react-bootstrap';
 
 class Player extends React.Component{
     
@@ -10,10 +10,8 @@ class Player extends React.Component{
         return (
             <div>
              <PageHeader><small>Player {this.props.playerNo + 1}</small></PageHeader>
-              <Matrix playerNo={this.props.playerNo} grid={this.props.grid} playerProgressGrid={this.props.playerProgressGrid}/>
-              {console.log("PlayerNO in Player" + this.props.playerNo)}
-              <button style = {style} disabled={this.props.winnerPlayerNo === -1 ? false : true} className="btn" id={this.props.playerNo} onClick={() => this.props.handleClaimBtnClick(this.props.playerNo)}>Claim Bingo!</button> 
-              
+             <Matrix playerNo={this.props.playerNo} grid={this.props.grid} playerProgressGrid={this.props.playerProgressGrid}/>
+             <Button style = {style} bsStyle="primary" disabled={this.props.winnerPlayerNo === -1 ? false : true} className="btn" id={this.props.playerNo} onClick={() => this.props.handleClaimBtnClick(this.props.playerNo)}>Claim Bingo!</Button>  
             </div>
         )
     }

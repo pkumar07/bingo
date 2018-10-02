@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import {Grid, Row, Col,Button, PageHeader} from 'react-bootstrap';
+import {Grid, Row, Col,Button} from 'react-bootstrap';
 
 function HeaderCell(props){
     return (
@@ -10,7 +10,7 @@ function HeaderCell(props){
     )
   }
   
-  function PreviousBalls(props){
+function PreviousBalls(props){
     var temp = props.prevBalls.map(function(ball){
       return <Col xs={3} md={3}><HeaderCell value={ball}/></Col>
     });
@@ -20,21 +20,23 @@ function HeaderCell(props){
         <Grid> <Row className="show-grid">{temp}</Row></Grid>
       </div>
     )
-  }
+}
   
-  function CurrentBall(props){
+function CurrentBall(props){
     return (
       <div>
-        <HeaderCell value={props.currentBall} />
+        <Grid> 
+          <Row className="show-grid"><HeaderCell value={props.currentBall} /></Row>
+        </Grid>
+        
       </div>
     )
-  }
+}
   
-  class Header extends React.Component{
+class Header extends React.Component{
       render(){
         return (
             <div>
-              <PageHeader>BINGO</PageHeader>
               <Button disabled ={this.props.winnerPlayerNo === -1 ? false: true} onClick={ () => this.props.handleClick() }>Draw ball!</Button>
               <Grid>
                 <Row className="show-grid">
@@ -47,7 +49,7 @@ function HeaderCell(props){
           )
       }
      
-    }
+}
 
     export default Header;
   

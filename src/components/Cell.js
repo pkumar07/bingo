@@ -13,9 +13,9 @@ class Cell extends React.Component{
           playerColor=playerColorArray[this.props.playerNo]
         
         var style = {backgroundColor:playerColor}
-          return (
-            <div style = {style} className="cell">{this.props.grid}</div>
-          )
+        return (
+            <div style = {style} className="cell">{this.props.grid < 10 ? "0" + this.props.grid : this.props.grid}</div>
+        )
     }
     
 }
