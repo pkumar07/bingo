@@ -6,9 +6,7 @@ class Player extends React.Component{
     
     render(){
         var color = ["red","blue","green","purple"]
-        var style = {
-          backgroundColor:color[this.props.playerNo]
-        }
+        var style = {backgroundColor:color[this.props.playerNo]}
         return (
             <div>
              <PageHeader><small>Player {this.props.playerNo + 1}</small></PageHeader>

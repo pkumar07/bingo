@@ -11,17 +11,13 @@ function HeaderCell(props){
   }
   
   function PreviousBalls(props){
-    
+    var temp = props.prevBalls.map(function(ball){
+      return <Col xs={3} md={3}><HeaderCell value={ball}/></Col>
+    });
+
     return (
       <div>
-        <Grid>
-          <Row className="show-grid">
-            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[0]}/></Col>
-            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[1]}/></Col>
-            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[2]}/></Col>
-            <Col xs={3} md={3}><HeaderCell value={props.prevBalls[3]}/></Col>
-          </Row>
-        </Grid>
+        <Grid> <Row className="show-grid">{temp}</Row></Grid>
       </div>
     )
   }

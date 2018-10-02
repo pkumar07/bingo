@@ -48,7 +48,7 @@ class MyGame extends React.Component{
             
         }
       }
-      console.log("Player " + playerNo + "has current no? " + returnPos.length)
+      //console.log("Player " + playerNo + "has current no? " + returnPos.length)
       return returnPos;
     }
 
@@ -108,10 +108,7 @@ class MyGame extends React.Component{
       }
 
       if(playerWon === true ){
-          //displayMessage = "Player Won"
-          //TODO: Disable draw Ball button here
           this.setState({winnerPlayerNo:id})
-          
       }
       else{
           alert("Incorrect claim")
@@ -123,7 +120,7 @@ class MyGame extends React.Component{
        //console.log("Handle click")
        var tempCurrentBall = this.generateNewBall()
        //Change state of playerProgressGrid if no is in the player grid
-       console.log("Current Ball" + tempCurrentBall)
+     //  console.log("Current Ball" + tempCurrentBall)
        //search in the grid for each player and update the grid for each player
        var tempGrid = []
        for(var playerNo = 0; playerNo<this.props.NO_OF_PLAYERS; playerNo++){
@@ -149,8 +146,6 @@ class MyGame extends React.Component{
       for(let i = 0; i<this.props.NO_OF_PLAYERS; i++){
         playerProgressGrid[i] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
       }
-      
- 
 
       this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid, winnerPlayerNo:winnerPlayerNo}
       this.handleClick = this.handleClick.bind(this)
@@ -161,22 +156,18 @@ class MyGame extends React.Component{
     
       var temp = []
       for(var i = 0; i<this.props.NO_OF_PLAYERS; i++){
-        temp.push(<Player key = {i} playerNo = {i} grid={this.state.grid[i]} playerProgressGrid={this.state.playerProgressGrid[i]} winnerPlayerNo={this.state.winnerPlayerNo} handleClaimBtnClick={this.handleClaimBtnClick} /> )
+        temp.push(
+          <Col xs={12} md={6} lg={3}>
+            <Player key = {i} playerNo = {i} grid={this.state.grid[i]} playerProgressGrid={this.state.playerProgressGrid[i]} winnerPlayerNo={this.state.winnerPlayerNo} handleClaimBtnClick={this.handleClaimBtnClick} /> 
+          </Col>
+        )
       }
-     
-     
-      
+
       return (
         <div>
-          
           <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall} winnerPlayerNo={this.state.winnerPlayerNo}/>
           <Grid>
-            <Row className="show-grid">
-              <Col xs={12} md={6} lg={3}>{temp[0]}</Col>
-              <Col xs={12} md={6} lg={3}>{temp[1]}</Col>
-              <Col xs={12} md={6} lg={3}>{temp[2]}</Col>
-              <Col xs={12} md={6} lg={3}>{temp[3]}</Col>
-            </Row>
+            <Row className="show-grid">{temp} </Row>
           </Grid>
           <Winner winnerPlayerNo={this.state.winnerPlayerNo} />
         </div>
