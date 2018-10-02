@@ -111,7 +111,7 @@ class MyGame extends React.Component{
           //displayMessage = "Player Won"
           //TODO: Disable draw Ball button here
           this.setState({winnerPlayerNo:id})
-           
+          
       }
       else{
           alert("Incorrect claim")
@@ -134,6 +134,7 @@ class MyGame extends React.Component{
     
 
     constructor(props){
+      
       super(props)
       var grid = []
       for(var i = 0; i<this.props.NO_OF_PLAYERS; i++){
@@ -149,6 +150,8 @@ class MyGame extends React.Component{
         playerProgressGrid[i] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
       }
       
+ 
+
       this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid, winnerPlayerNo:winnerPlayerNo}
       this.handleClick = this.handleClick.bind(this)
       this.handleClaimBtnClick = this.handleClaimBtnClick.bind(this)
@@ -160,10 +163,13 @@ class MyGame extends React.Component{
       for(var i = 0; i<this.props.NO_OF_PLAYERS; i++){
         temp.push(<Player key = {i} playerNo = {i} grid={this.state.grid[i]} playerProgressGrid={this.state.playerProgressGrid[i]} winnerPlayerNo={this.state.winnerPlayerNo} handleClaimBtnClick={this.handleClaimBtnClick} /> )
       }
+     
+     
+      
       return (
         <div>
           
-          <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall}/>
+          <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall} winnerPlayerNo={this.state.winnerPlayerNo}/>
           <Grid>
             <Row className="show-grid">
               <Col xs={12} md={6} lg={3}>{temp[0]}</Col>

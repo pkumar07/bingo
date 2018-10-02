@@ -39,7 +39,7 @@ function HeaderCell(props){
         return (
             <div>
               <PageHeader>BINGO</PageHeader>
-              <Button onClick={ () => this.props.handleClick() }>Draw ball!</Button>
+              <Button disabled ={this.props.winnerPlayerNo === -1 ? false: true} onClick={ () => this.props.handleClick() }>Draw ball!</Button>
               <Grid>
                 <Row className="show-grid">
                   <Col xs={12} md={4}> Last Ball: <CurrentBall currentBall={this.props.currentBall}/></Col>
