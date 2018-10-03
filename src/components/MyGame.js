@@ -2,13 +2,13 @@ import React from 'react';
 import Header from './Header';
 import Player from './Player';
 import '../App.css';
-import { Grid, Row, Col, Jumbotron, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Jumbotron, Button} from 'react-bootstrap';
 
 
 function Winner(props){
     return (
       <div>
-        <h3>Player {props.winnerPlayerNo + 1} is the winner</h3>
+        <h3>Player {props.winnerPlayerNo + 1} is the winner!!</h3>
       </div>
     )
   }  
@@ -31,7 +31,6 @@ class MyGame extends React.Component{
     }
 
     isNumberInGrid(currentBall, playerNo){
-      //console.log("In isNumberGrid ")
       var grid = this.state.grid[playerNo]
       var returnPos = []
       for(let i = 0; i<grid.length; i++){
@@ -40,11 +39,9 @@ class MyGame extends React.Component{
             returnPos[0] = i;
             returnPos[1] = j;
             break;
-          }
-            
+          }  
         }
       }
-      //console.log("Player " + playerNo + "has current no? " + returnPos.length)
       return returnPos;
     }
 
@@ -59,10 +56,8 @@ class MyGame extends React.Component{
         tempGrid[returnPos[0]][returnPos[1]] = 1;
        } 
        else{
-         console.log("No not in grid")
+         //console.log("No not in grid")
        }
-       //this.displayMatrix(tempGrid, playerNo);
-       
        return tempGrid; //This is the modified playerProgressGrid for a player
     }
 
@@ -89,8 +84,6 @@ class MyGame extends React.Component{
 
 
     handleClaimBtnClick(id){
-     // console.log("Claim Button clicked")
-    //  console.log("The button id is" + id)
       var playerWon = true;
       var grid = this.state.playerProgressGrid[id]
       for(var i = 0;i<5;i++){
@@ -112,10 +105,8 @@ class MyGame extends React.Component{
   }
 
     handleClick(){
-       //console.log("Handle click")
-       var tempCurrentBall = this.generateNewBall()
+      var tempCurrentBall = this.generateNewBall()
        //Change state of playerProgressGrid if no is in the player grid
-     //  console.log("Current Ball" + tempCurrentBall)
        //search in the grid for each player and update the grid for each player
        var tempGrid = []
        for(var playerNo = 0; playerNo<this.props.NO_OF_PLAYERS; playerNo++){
@@ -125,12 +116,10 @@ class MyGame extends React.Component{
     }
     
     handleResetClick(){
-      console.log("Clicked reset");
       window.location.reload();
     }
 
     handleStartGameClick(){
-      console.log("Start game");
       var temp = true;
       this.setState({gameStarted:temp});
     }
@@ -168,15 +157,28 @@ class MyGame extends React.Component{
         )
       }
 
+      let mybutton;
+      if(this.state.gameStarted === true && this.state.winnerPlayerNo === -1)
+            mybutton = <Col key={2.1} xs={6} md={3} lg={2}><div className={this.state.gameStarted && this.state.winnerPlayerNo === -1  ? '' : 'hidden'}><Button bsStyle="primary" disabled ={this.state.winnerPlayerNo === -1 ? false: true} onClick={ () => this.handleClick() }>Draw ball!</Button></div></Col>;
+
+      else if(this.state.gameStarted === false || this.state.winnerPlayerNo > -1)
+            mybutton = <Col key={2.2} xs={6} md={3} lg={2}><div className={this.state.gameStarted && this.state.winnerPlayerNo === -1 ? 'hidden' : ''}><Button bsStyle="primary" onClick={ () => this.handleStartGameClick()}>Start Game</Button></div></Col>
+      
       return (
         <div className="container">
 
            <Jumbotron>
-              <h1>PLAY BINGO!</h1>
-              <div className={this.state.gameStarted && this.state.winnerPlayerNo === -1 ? 'hidden' : ''}><Button bsStyle="primary" onClick={ () => this.handleStartGameClick()}>Start Game</Button></div>
-              <p><Button bsStyle="primary" onClick={ () => this.handleResetClick()}>Reset Game</Button></p>
+             <Grid>
+               <Row>
+               <Col key={1} xs={12} md={6} lg={8}><h1>PLAY BINGO!</h1></Col>
+               {mybutton}              
+               <Col key={3} xs={6} md={3} lg={2}><div><Button bsStyle="primary" onClick={ () => this.handleResetClick()}>Reset Game</Button></div></Col>
+  
+               </Row>
+              </Grid>
+              
               <div className={this.state.gameStarted && this.state.winnerPlayerNo === -1  ? '' : 'hidden'}>
-                <Header  handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall} winnerPlayerNo={this.state.winnerPlayerNo}/>
+                <Header prevBalls={this.state.prevBalls} currentBall={this.state.currentBall}/>
                 <Grid><Row className="show-grid">{temp} </Row></Grid>
               </div>
               <div className={this.state.winnerPlayerNo !== -1 ? '' : 'hidden'}><Winner winnerPlayerNo={this.state.winnerPlayerNo} /></div>

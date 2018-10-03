@@ -8,7 +8,7 @@ class Matrix extends React.Component{
           rows.push(<Row key={i} row={i} playerNo={this.props.playerNo} grid={this.props.grid[i]}  playerProgressGrid={this.props.playerProgressGrid}/>)
         }
     return (
-        <div>{rows}</div>
+        <div className = "center">{rows}</div>
       )
     }
     
