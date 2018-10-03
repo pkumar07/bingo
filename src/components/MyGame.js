@@ -2,7 +2,8 @@ import React from 'react';
 import Header from './Header';
 import Player from './Player';
 import '../App.css';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Jumbotron, Button } from 'react-bootstrap';
+
 
 function Winner(props){
     return (
@@ -14,11 +15,6 @@ function Winner(props){
   
 class MyGame extends React.Component{
 
-    //displayMatrix(grid, playerNo){
-      //console.log("Player " + playerNo)
-      //console.log(grid)
-   // }
-    
     generateMatrix(){
       var tempMatrix = new Set();
       while(tempMatrix.size !== 25){
@@ -128,6 +124,16 @@ class MyGame extends React.Component{
        this.setState({playerProgressGrid:tempGrid}) 
     }
     
+    handleResetClick(){
+      console.log("Clicked reset");
+      window.location.reload();
+    }
+
+    handleStartGameClick(){
+      console.log("Start game");
+      var temp = true;
+      this.setState({gameStarted:temp});
+    }
 
     constructor(props){
       
@@ -140,13 +146,13 @@ class MyGame extends React.Component{
       var currentBall = -1
       var allBalls = new Set()
       var winnerPlayerNo = -1
-
+      var gameStarted = false;
       var playerProgressGrid = []
       for(let i = 0; i<this.props.NO_OF_PLAYERS; i++){
         playerProgressGrid[i] = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
       }
 
-      this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid, winnerPlayerNo:winnerPlayerNo}
+      this.state = {grid:grid, prevBalls:prevBalls, currentBall:currentBall, allBalls:allBalls, playerProgressGrid:playerProgressGrid, winnerPlayerNo:winnerPlayerNo, gameStarted:gameStarted}
       this.handleClick = this.handleClick.bind(this)
       this.handleClaimBtnClick = this.handleClaimBtnClick.bind(this)
     }
@@ -156,17 +162,25 @@ class MyGame extends React.Component{
       var temp = []
       for(var i = 0; i<this.props.NO_OF_PLAYERS; i++){
         temp.push(
-          <Col xs={12} md={6} lg={3}>
+          <Col key={i} xs={12} md={6} lg={3}>
             <Player key = {i} playerNo = {i} grid={this.state.grid[i]} playerProgressGrid={this.state.playerProgressGrid[i]} winnerPlayerNo={this.state.winnerPlayerNo} handleClaimBtnClick={this.handleClaimBtnClick} /> 
           </Col>
         )
       }
 
       return (
-        <div>
-          <Header handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall} winnerPlayerNo={this.state.winnerPlayerNo}/>
-          <Grid><Row className="show-grid">{temp} </Row></Grid>
-          <Winner winnerPlayerNo={this.state.winnerPlayerNo} />
+        <div className="container">
+
+           <Jumbotron>
+              <h1>PLAY BINGO!</h1>
+              <div className={this.state.gameStarted && this.state.winnerPlayerNo === -1 ? 'hidden' : ''}><Button bsStyle="primary" onClick={ () => this.handleStartGameClick()}>Start Game</Button></div>
+              <p><Button bsStyle="primary" onClick={ () => this.handleResetClick()}>Reset Game</Button></p>
+              <div className={this.state.gameStarted && this.state.winnerPlayerNo === -1  ? '' : 'hidden'}>
+                <Header  handleClick={this.handleClick} prevBalls={this.state.prevBalls} currentBall={this.state.currentBall} winnerPlayerNo={this.state.winnerPlayerNo}/>
+                <Grid><Row className="show-grid">{temp} </Row></Grid>
+              </div>
+              <div className={this.state.winnerPlayerNo !== -1 ? '' : 'hidden'}><Winner winnerPlayerNo={this.state.winnerPlayerNo} /></div>
+           </Jumbotron>
         </div>
       )
     }

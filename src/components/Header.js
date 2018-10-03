@@ -11,8 +11,8 @@ function HeaderCell(props){
   }
   
 function PreviousBalls(props){
-    var temp = props.prevBalls.map(function(ball){
-      return <Col xs={3} md={3}><HeaderCell value={ball}/></Col>
+    var temp = props.prevBalls.map(function(ball,index){
+      return <Col key={index} xs={3} md={3}><HeaderCell value={ball < 10 && ball !== -1? "0" + ball : ball}/></Col>
     });
 
     return (
@@ -21,12 +21,14 @@ function PreviousBalls(props){
       </div>
     )
 }
-  
+
 function CurrentBall(props){
     return (
       <div>
         <Grid> 
-          <Row className="show-grid"><HeaderCell value={props.currentBall} /></Row>
+          <Row className="show-grid">
+            <Col xs={12} md={4}><HeaderCell value={props.currentBall < 10 && props.currentBall !== -1? "0" + props.currentBall : props.currentBall} /></Col>
+          </Row>
         </Grid>
         
       </div>
@@ -41,14 +43,13 @@ class Header extends React.Component{
               <Grid>
                 <Row className="show-grid">
                   <Col xs={12} md={4}> Last Ball: <CurrentBall currentBall={this.props.currentBall}/></Col>
-                  <Col xs={12} md={2}></Col>
-                  <Col xs={12} md={6}>Previous Balls: <PreviousBalls prevBalls={this.props.prevBalls}/></Col>
+                  <Col xs={12} md={4}></Col>
+                  <Col xs={12} md={4}>Previous Balls: <PreviousBalls prevBalls={this.props.prevBalls}/></Col>
                 </Row>
               </Grid>   
             </div>
           )
-      }
-     
+      } 
 }
 
     export default Header;

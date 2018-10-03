@@ -11,7 +11,7 @@ class Player extends React.Component{
             <div>
              <PageHeader><small>Player {this.props.playerNo + 1}</small></PageHeader>
              <Matrix playerNo={this.props.playerNo} grid={this.props.grid} playerProgressGrid={this.props.playerProgressGrid}/>
-             <Button style = {style} bsStyle="primary" disabled={this.props.winnerPlayerNo === -1 ? false : true} className="btn" id={this.props.playerNo} onClick={() => this.props.handleClaimBtnClick(this.props.playerNo)}>Claim Bingo!</Button>  
+             <br/><Button style = {style} bsStyle="primary" disabled={this.props.winnerPlayerNo === -1 ? false : true} className="btn" id={this.props.playerNo} onClick={() => this.props.handleClaimBtnClick(this.props.playerNo)}>Claim Bingo!</Button>  
             </div>
         )
     }
