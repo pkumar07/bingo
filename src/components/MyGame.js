@@ -8,7 +8,7 @@ import { Grid, Row, Col, Jumbotron, Button} from 'react-bootstrap';
 function Winner(props){
     return (
       <div>
-        <h3>Player {props.winnerPlayerNo + 1} is the winner!!</h3>
+        <br/><h2>Player {props.winnerPlayerNo + 1} is the winner!!</h2>
       </div>
     )
   }  
@@ -159,10 +159,10 @@ class MyGame extends React.Component{
 
       let mybutton;
       if(this.state.gameStarted === true && this.state.winnerPlayerNo === -1)
-            mybutton = <Col key={2.1} xs={6} md={3} lg={2}><div className={this.state.gameStarted && this.state.winnerPlayerNo === -1  ? '' : 'hidden'}><Button bsStyle="primary" disabled ={this.state.winnerPlayerNo === -1 ? false: true} onClick={ () => this.handleClick() }>Draw ball!</Button></div></Col>;
+            mybutton = <Col key={2.1} xs={6} md={3} lg={2}><div className={this.state.gameStarted && this.state.winnerPlayerNo === -1  ? '' : 'hidden'}><Button bsStyle="primary mybutton" disabled ={this.state.winnerPlayerNo === -1 ? false: true} onClick={ () => this.handleClick() }>Draw ball!</Button></div></Col>;
 
       else if(this.state.gameStarted === false || this.state.winnerPlayerNo > -1)
-            mybutton = <Col key={2.2} xs={6} md={3} lg={2}><div className={this.state.gameStarted && this.state.winnerPlayerNo === -1 ? 'hidden' : ''}><Button bsStyle="primary" onClick={ () => this.handleStartGameClick()}>Start Game</Button></div></Col>
+            mybutton = <Col key={2.2} xs={6} md={3} lg={2}><div className={this.state.gameStarted && this.state.winnerPlayerNo === -1 ? 'hidden' : ''}><Button bsStyle="primary mybutton" onClick={ () => this.handleStartGameClick()}>Start Game</Button></div></Col>
       
       return (
         <div className="container">
@@ -170,13 +170,11 @@ class MyGame extends React.Component{
            <Jumbotron>
              <Grid>
                <Row>
-               <Col key={1} xs={12} md={6} lg={8}><h1>PLAY BINGO!</h1></Col>
+               <Col key={1} xs={12} md={6} lg={8}><h1>BINGO!</h1></Col>
                {mybutton}              
-               <Col key={3} xs={6} md={3} lg={2}><div><Button bsStyle="primary" onClick={ () => this.handleResetClick()}>Reset Game</Button></div></Col>
-  
-               </Row>
+               <Col key={3} xs={6} md={3} lg={2}><div><Button bsStyle="primary mybutton" onClick={ () => this.handleResetClick()}>Reset Game</Button></div></Col>               </Row>
               </Grid>
-              
+              <br/><br/>
               <div className={this.state.gameStarted && this.state.winnerPlayerNo === -1  ? '' : 'hidden'}>
                 <Header prevBalls={this.state.prevBalls} currentBall={this.state.currentBall}/>
                 <Grid><Row className="show-grid">{temp} </Row></Grid>

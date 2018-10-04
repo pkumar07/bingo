@@ -1,6 +1,13 @@
+    .jumbotron {
+      background-color: black !important;
+    }
+    
     .container {
+      margin-top: 5px;
       border:1px solid black;
       text-align: center;
+      color: white;
+      background-color: black;
     }
 
     .header.cell{
@@ -9,8 +16,13 @@
       border-radius: 100px;
       font-size: 15px;
       font-weight: 600;
-      background-color: indianred
+      background-color: rgba(235, 229, 39, 1);
+    }
 
+    .mybutton {
+      background-color: green !important;
+      border-color:green !important;
+      margin:5px;
     }
 
     .hidden { display:none; }
@@ -21,12 +33,16 @@
       height:40px;
       width:40px;
       border:1px solid black;
+      color:black;
       border-radius: 5px;
       margin: 0.5px;
       padding: 10px;
       font-size: 22px;
     } 
 
+    h1{
+      font-size: 50px !important;
+    }
 
     body {
       width:100%;
