@@ -5,7 +5,7 @@ import {PageHeader, Button} from 'react-bootstrap';
 class Player extends React.Component{
     
     render(){
-        var color = ["red","blue","green","purple"]
+        var color = ["#D31A38","#0080FF","#EE7600","purple"]
         var style = {backgroundColor:color[this.props.playerNo]}
         return (
             <div>

@@ -10,12 +10,9 @@ class Row extends React.Component{
           }
   
           return(
-            <div style={style}>
-              {cells}
-            </div>
+            <div style={style}>{cells}</div>
           )
     }
-    
   }
 
   export default Row;
