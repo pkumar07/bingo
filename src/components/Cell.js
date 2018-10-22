@@ -15,5 +15,3 @@ class Cell extends React.Component{
 
 export default Cell;
 
-/* background-color: 
-rgba(187, 225, 123, 1) */
